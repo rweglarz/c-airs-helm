@@ -26,9 +26,6 @@ data:
   #        "passiprange": List of ip ranges which dont need to go to the DP firewall pod
   #                        e.g "passiprange": "10.52.0.0/14,10.56.0.0/20"
   #        "cloudcni": "openshiftsdn" - if CNI is openshift-sdn, for other CNI keep it empty
-  #        "maxpod_failover": "failopen" - when max pods are being served, bypass
-  #                                        firewall for the new pods. Defaults to
-  #                                        wait/block on free spot.
   #        "override_mtu": Override the mtu used in the application pod. Defaults to auto mtu detection.
   #        "fwtrustcidr": Optional field to pass firewall trust cidr. Used by the app pods
   #                       to distinguish packets from FW and reduce hop count in EW traffic flows.
