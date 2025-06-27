@@ -1,0 +1,5 @@
+endpoints: 10.1.0.126
+cniimage: gcr.io/pan-cn-series/airs/pan-cni:latest
+fwtrustcidr: ""
+namespace: kube-system
+clusterid: 1
