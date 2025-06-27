@@ -30,7 +30,11 @@ spec:
     spec:
       nodeSelector:
         beta.kubernetes.io/os: linux
+      {{- if eq .Values.deployTo "gke" }}
+      hostNetwork: false
+      {{- else }}
       hostNetwork: true
+      {{- end }}
       tolerations:
         # Make sure pan-cni gets scheduled on all nodes.
         - effect: NoSchedule
@@ -50,7 +54,7 @@ spec:
         # and CNI network config file on each node.
         - name: install-pan-cni
           image: {{ .Values.cniimage }}
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           command: ["/install-pan-cni.sh", "main"]
           lifecycle:
             # Before killing the container, executes the below handler
@@ -69,6 +73,7 @@ spec:
             # configured) or any cni conf file is detected. If configured
             # pan-cni will wait until configured CNI conf becomes primary
             #- name: CNI_CONF_NAME
+            #  value: "10-calico.conflist"
             #  value: "10-azure.conflist"
             #
             # This is optional. After pan-cni insertion, delay for it to be
@@ -94,7 +99,11 @@ spec:
         # Used to install CNI.
         - name: cni-bin-dir
           hostPath:
+            {{- if eq .Values.deployTo "gke" }}
+            path: /home/kubernetes/bin
+            {{- else }}
             path: /opt/cni/bin
+            {{- end }}
         - name: cni-net-dir
           hostPath:
             path: /etc/cni/net.d

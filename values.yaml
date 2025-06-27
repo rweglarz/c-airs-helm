@@ -3,3 +3,4 @@ cniimage: gcr.io/pan-cn-series/airs/pan-cni:latest
 fwtrustcidr: ""
 namespace: kube-system
 clusterid: 1
+deployTo: gke
