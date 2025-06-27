@@ -25,6 +25,7 @@ data:
   #        "traffic_object_id": Kubernetes ClusterID value range 1-2048
   #        "passiprange": List of ip ranges which dont need to go to the DP firewall pod
   #                        e.g "passiprange": "10.52.0.0/14,10.56.0.0/20"
+  #        "cloudcni": "openshiftsdn" - if CNI is openshift-sdn, for other CNI keep it empty
   #        "maxpod_failover": "failopen" - when max pods are being served, bypass
   #                                        firewall for the new pods. Defaults to
   #                                        wait/block on free spot.
@@ -48,6 +49,8 @@ data:
           "mode": "service",
           {{- if eq .Values.deployTo "gke" }}
           "cloud": "gke",
+          {{- else if eq .Values.deployTo "openshift" }}
+          "cloudcni": "openshiftsdn",
           {{- else }}
           "cloud": "aks",
           {{- end }}
@@ -64,6 +67,8 @@ data:
               "kubeconfig": "__KUBECONFIG_FILEPATH__",
               {{- if eq .Values.deployTo "gke" }}
               "cni_bin_dir": "/home/kubernetes/bin",
+              {{- else if eq .Values.deployTo "openshift" }}
+              "cni_bin_dir": "/var/lib/cni/bin",
               {{- else }}
               "cni_bin_dir": "/opt/cni/bin",
               {{- end }}

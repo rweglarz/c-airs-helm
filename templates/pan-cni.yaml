@@ -68,6 +68,11 @@ spec:
                 configMapKeyRef:
                   name: pan-cni-config
                   key: cni_network_config
+            {{- if eq .Values.deployTo "openshift" }}
+            # Name of the CNI config file for our CNI plugin.
+            - name: CNI_CONF_NAME
+              value: "pan-cni.conf"
+            {{- else }}
             # Name of the primary CNI config file to add our CNI plugin.
             # This is optional. We always wait until this configured (if
             # configured) or any cni conf file is detected. If configured
@@ -75,7 +80,18 @@ spec:
             #- name: CNI_CONF_NAME
             #  value: "10-calico.conflist"
             #  value: "10-azure.conflist"
-            #
+            {{- end }}
+            {{- if eq .Values.deployTo "openshift" }}
+            # Name of the directory for CNI config file for our CNI plugin.
+            - name: CNI_NET_DIR
+              value: "/etc/cni/multus/net.d"
+            {{- end }}
+            # Whether to deploy the configuration file as a plugin chain or as 
+            # a standalone file (for multus) in cni-conf-dir
+            {{- if eq .Values.deployTo "openshift" }}
+            - name: CHAINED_CNI_PLUGIN
+              value: "false"
+            {{- end }}
             # This is optional. After pan-cni insertion, delay for it to be
             # picked up/propogated before makring pan-cni-ready (default 30 seconds)
             #- name: CNI_READY_DELAY
@@ -101,12 +117,18 @@ spec:
           hostPath:
             {{- if eq .Values.deployTo "gke" }}
             path: /home/kubernetes/bin
+            {{- else if eq .Values.deployTo "openshift" }}
+            path: /var/lib/cni/bin
             {{- else }}
             path: /opt/cni/bin
             {{- end }}
         - name: cni-net-dir
           hostPath:
+            {{- if eq .Values.deployTo "openshift" }}
+            path: /etc/cni/multus/net.d
+            {{- else }}
             path: /etc/cni/net.d
+            {{- end }}
         - name: appinfo
           hostPath:
             # app pod info's directory location on host
