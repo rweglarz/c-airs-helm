@@ -11,7 +11,7 @@ endpoints:
 #   - ip: 10.1.1.75
 #     zone: eu-west-1b
 
-cniimage: gcr.io/pan-cn-series/airs/pan-cni:latest
+cniimage: gcr.io/pan-cn-series/airs/pan-cni:4.0.1
 fwtrustcidr: ""
 namespace: kube-system
 clusterid: 1
