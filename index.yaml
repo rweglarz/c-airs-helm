@@ -11,4 +11,15 @@ entries:
     urls:
     - https://github.com/rweglarz/c-airs-helm/releases/download/ai-runtime-security-0.5.1/ai-runtime-security-0.5.1.tgz
     version: 0.5.1
-generated: "2025-07-03T14:50:47.128571098Z"
+  airs-cni:
+  - apiVersion: v2
+    appVersion: 0.4.1
+    created: "2025-07-03T14:54:48.353915481Z"
+    description: A Helm chart for Prisma AIRS CNI
+    digest: b0eef03637f65785810c65151bc418268106c5c0660452d63aa62019c923ebc0
+    name: airs-cni
+    type: application
+    urls:
+    - https://github.com/rweglarz/c-airs-helm/releases/download/airs-cni-0.5.2/airs-cni-0.5.2.tgz
+    version: 0.5.2
+generated: "2025-07-03T14:54:48.35392585Z"
