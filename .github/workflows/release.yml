@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - main # Or whatever your default branch is (e.g., master, develop)
+
+jobs:
+  release:
+    permissions:
+      contents: write # Required to push to gh-pages and create releases
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # This is important for chart-releaser-action to properly detect changes
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.7.0 # Use the latest version available
+        with:
+          charts_dir: charts # Specify the directory where your charts are located
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}" # GITHUB_TOKEN is automatically provided by GitHub Actions
+
