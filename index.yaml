@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  ai-runtime-security:
+  - apiVersion: v2
+    appVersion: 0.4.1
+    created: "2025-07-03T14:50:47.128565998Z"
+    description: A Helm chart for Kubernetes
+    digest: aa3cecc96251bdd67eee4675ae8c6f24128c767f38bb22ed7535cce542c97a98
+    name: ai-runtime-security
+    type: application
+    urls:
+    - https://github.com/rweglarz/c-airs-helm/releases/download/ai-runtime-security-0.5.1/ai-runtime-security-0.5.1.tgz
+    version: 0.5.1
+generated: "2025-07-03T14:50:47.128571098Z"
