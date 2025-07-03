@@ -22,7 +22,7 @@ jobs:
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.7.0 # Use the latest version available
         with:
-          charts_dir: charts # Specify the directory where your charts are located
+          charts_dir: . # Specify the directory where your charts are located
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}" # GITHUB_TOKEN is automatically provided by GitHub Actions
 
