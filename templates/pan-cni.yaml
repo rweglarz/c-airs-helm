@@ -48,7 +48,7 @@ spec:
         # This container installs the pan CNI binaries
         # and CNI network config file on each node.
         - name: install-pan-cni
-          image: {{ .Values.cniimage }}
+          image: {{ .Values.image.host_repo }}:{{ .Values.image.tag}}
           imagePullPolicy: Always
           command: ["/install-pan-cni.sh", "main"]
           lifecycle:
