@@ -24,5 +24,13 @@ ports:
     protocol: UDP
     port: 6080
 endpoints:
+  {{- range $v := .Values.endpoints }}
   - addresses:
-      - {{ .Values.endpoints }}
+      - {{ $v.ip }}
+    {{- if $v.zone }}
+    zone: {{ $v.zone }}
+    hints:
+      forZones:
+        - name: {{ $v.zone }}
+    {{- end }}
+  {{- end }}

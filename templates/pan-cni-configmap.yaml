@@ -46,6 +46,8 @@ data:
           "mode": "service",
           {{- if eq .Values.deployTo "gke" }}
           "cloud": "gke",
+          {{- else if eq .Values.deployTo "eks" }}
+          "cloud": "eks",
           {{- else if eq .Values.deployTo "openshift" }}
           "cloudcni": "openshiftsdn",
           {{- else }}

@@ -73,6 +73,7 @@ spec:
             # configured) or any cni conf file is detected. If configured
             # pan-cni will wait until configured CNI conf becomes primary
             #- name: CNI_CONF_NAME
+            #  value: "10-aws.conflist"
             #  value: "10-calico.conflist"
             #  value: "10-azure.conflist"
             {{- end }}

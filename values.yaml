@@ -1,6 +1,18 @@
-endpoints: 10.1.0.126
+endpoints:
+  - ip: 10.1.1.11
+
+# eks
+# Configure vpc endpoint per zone. This makes sure kubernetes
+# traffic is not sent across zone. Endpoints can be added or
+# removed based on requirements and zone availability.
+# endpoints:
+#   - ip: 10.1.1.11
+#     zone: eu-west-1a
+#   - ip: 10.1.1.75
+#     zone: eu-west-1b
+
 cniimage: gcr.io/pan-cn-series/airs/pan-cni:latest
 fwtrustcidr: ""
 namespace: kube-system
 clusterid: 1
-deployTo: gke
+deployTo: aks
