@@ -3,6 +3,16 @@ entries:
   airs-cni:
   - apiVersion: v2
     appVersion: 0.4.1
+    created: "2025-08-14T13:10:31.200073442Z"
+    description: A Helm chart for Prisma AIRS CNI
+    digest: 492cd2299ecc00579882d47fcbdc2d8f85f19a75da00ef1be4a904537dc85545
+    name: airs-cni
+    type: application
+    urls:
+    - https://github.com/rweglarz/c-airs-helm/releases/download/airs-cni-0.6.0/airs-cni-0.6.0.tgz
+    version: 0.6.0
+  - apiVersion: v2
+    appVersion: 0.4.1
     created: "2025-07-03T14:54:48.353915481Z"
     description: A Helm chart for Prisma AIRS CNI
     digest: b0eef03637f65785810c65151bc418268106c5c0660452d63aa62019c923ebc0
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/rweglarz/c-airs-helm/releases/download/airs-cni-0.5.2/airs-cni-0.5.2.tgz
     version: 0.5.2
-generated: "2025-07-03T15:17:48.35392585Z"
+generated: "2025-08-14T13:10:31.200082139Z"
