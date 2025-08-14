@@ -1,0 +1,19 @@
+apiVersion: "paloaltonetworks.com/v1"
+kind: SubnetInfo
+metadata:
+  name: "bypass-metadata"
+  namespace: {{ .Values.namespace }}
+spec:
+  subnetinfo: "BYPASS:169.254.169.254/32"
+---
+apiVersion: "paloaltonetworks.com/v1"
+kind: SubnetInfo
+metadata:
+  name: "bypass-internal-traffic"
+  namespace: {{ .Values.namespace }}
+spec:
+  {{- if eq .Values.deployTo "gke" }}
+  subnetinfo: "BYPASS:10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,34.118.224.0/20"
+  {{- else }}
+  subnetinfo: "BYPASS:10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+  {{- end }}
