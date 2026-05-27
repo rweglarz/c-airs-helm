@@ -38,16 +38,12 @@ The following table lists the configurable parameters of the `airs-cni` chart an
 | `deployTo` | Target deployment environment (`aks`, `gke`, `eks`, `openshift`) | `aks` |
 | `clusterid` | Unique identifier for the cluster | `1` |
 
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example:
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
+
+### GKE Example
 
 ```bash
-helm install airs r-airs-cni/airs-cni --set deployTo=gke
-```
-
-Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example:
-
-```bash
-helm install airs r-airs-cni/airs-cni -f values.yaml
+helm install airs r-airs-cni/airs-cni --set deployTo=gke --set "endpoints[0].ip"=172.16.10.4
 ```
 
 ### AWS EKS Example
@@ -61,6 +57,12 @@ helm install airs r-airs-cni/airs-cni \
 	--set "endpoints[0].zone"=eu-central-1a \
 	--set "endpoints[1].ip"=172.30.1.54 \
 	--set "endpoints[1].zone"=eu-central-1b
+```
+
+Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example:
+
+```bash
+helm install airs r-airs-cni/airs-cni -f values.yaml
 ```
 
 ## SubnetInfo Resources
