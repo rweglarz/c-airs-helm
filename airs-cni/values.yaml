@@ -13,7 +13,7 @@ endpoints:
 
 image:
   host_repo: gcr.io/pan-cn-series/airs/pan-cni
-  tag: 4.0.1
+  tag: 4.0.2
 fwtrustcidr: ""
 namespace: kube-system
 clusterid: 1
