@@ -115,6 +115,8 @@ spec:
             path: /home/kubernetes/bin
             {{- else if eq .Values.deployTo "openshift" }}
             path: /var/lib/cni/bin
+            {{- else if eq .Values.deployTo "k3s-flannel" }}
+            path: /var/lib/rancher/k3s/data/cni
             {{- else }}
             path: /opt/cni/bin
             {{- end }}
@@ -122,6 +124,8 @@ spec:
           hostPath:
             {{- if eq .Values.deployTo "openshift" }}
             path: /etc/cni/multus/net.d
+            {{- else if eq .Values.deployTo "k3s-flannel" }}
+            path: /var/lib/rancher/k3s/agent/etc/cni/net.d
             {{- else }}
             path: /etc/cni/net.d
             {{- end }}

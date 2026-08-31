@@ -77,5 +77,6 @@ This chart also deploys `SubnetInfo` Custom Resources which are used by the CNI 
 The chart supports different cloud environments via the `deployTo` parameter:
 - `aks` (Azure Kubernetes Service)
 - `gke` (Google Kubernetes Engine)
+- `k3s-flannel` (k3s with default flannel CNI) - experimental
 - `eks` (Amazon Elastic Kubernetes Service)
 - `openshift` (Red Hat OpenShift)

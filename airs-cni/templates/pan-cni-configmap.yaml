@@ -63,11 +63,17 @@ data:
           "override_mtu": "",
           "fwtrustcidr": "{{ .Values.fwtrustcidr }}",
           "kubernetes": {
+              {{- if eq .Values.deployTo "k3s-flannel" }}
+              "kubeconfig": "/var/lib/rancher/k3s/agent/etc/cni/net.d/ZZZ-pan-cni-kubeconfig",
+              {{- else }}
               "kubeconfig": "__KUBECONFIG_FILEPATH__",
+              {{- end }}
               {{- if eq .Values.deployTo "gke" }}
               "cni_bin_dir": "/home/kubernetes/bin",
               {{- else if eq .Values.deployTo "openshift" }}
               "cni_bin_dir": "/var/lib/cni/bin",
+              {{- else if eq .Values.deployTo "k3s-flannel" }}
+              "cni_bin_dir": "/var/lib/rancher/k3s/data/cni",
               {{- else }}
               "cni_bin_dir": "/opt/cni/bin",
               {{- end }}
