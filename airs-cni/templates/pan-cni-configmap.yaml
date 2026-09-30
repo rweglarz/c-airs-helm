@@ -49,6 +49,7 @@ data:
           {{- else if eq .Values.deployTo "eks" }}
           "cloud": "eks",
           {{- else if eq .Values.deployTo "openshift" }}
+          "cloud": "openshift",
           "cloudcni": "openshiftsdn",
           {{- else }}
           "cloud": "aks",
